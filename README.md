@@ -122,7 +122,7 @@ static void Main(string[] args)
 }
 
 ```
-In the above, implementation we have used arrays. Note you can use lists or vectors if you prefer. Like many other Programming languages, arrays are passed by referenece and therefore, any changes that a method makes to an array will change the array after outside of the scope of the function. If you need a reminder of the implementation details of the Merge Sort algorithm, feel free to have a look at the page on [Wikipedia](https://en.wikipedia.org/wiki/Merge_sort). Additionally there is a very informative video by mycodeschool channel on [YouTube](https://www.youtube.com/watch?v=TzeBrDU-JaY)
+In the above implementation we have used arrays. Note you can use lists or vectors if you prefer. Like many other Programming languages, arrays are passed by refrenece and therefore, any changes that a method makes to an array will change the array after outside of the scope of the function. If you need a reminder of the implementation details of the Merge Sort algorithm, feel free to have a look at the page on [Wikipedia](https://en.wikipedia.org/wiki/Merge_sort). Additionally there is a very informative video by mycodeschool channel on [YouTube](https://www.youtube.com/watch?v=TzeBrDU-JaY)
 
 
 ### Use the helper functions to print and to test your algorithm
@@ -147,7 +147,7 @@ where $$p$$ is the number of processors or cores, and $$T_p$$ is the time taken 
 ### Multi Threading Merge Sort:
 - Start by first manually subdividing the unsorted array into subarrays and sort them separately in a dedicated thread. And then merge them together. And test your algorithm.
 - Then use a method which can subdividing unsorted array into multiple sub-arrays based on a variable integer (number of threads), e.g. if the thread# is 10 and the array size is 100, the process can create 10 similar size arrays and sort them in their own dedicated threads.
-- Note that threads can take inout arguments (Page 23 Lecture 3 via Lambda functions or Start() methods or [MS Docs](https://docs.microsoft.com/en-us/dotnet/standard/threading/creating-threads-and-passing-data-at-start-time))  
+- Note that threads can take input arguments (Page 23 Lecture 3 via Lambda functions or Start() methods or [MS Docs](https://docs.microsoft.com/en-us/dotnet/standard/threading/creating-threads-and-passing-data-at-start-time))  
 - Note that you can pass the unsorted array (as an argument of a method) into a thread, and sort it in the thread. Once the thread is done, the array in the main thread is sorted because arrays are passed into function by reference.
 - Note that you must synchronize all the threads to join before you start merging the sorted sub-array from each thread
 
