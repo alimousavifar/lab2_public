@@ -129,6 +129,7 @@ In the above, implementation we have used arrays. Note you can use lists or vect
 If the helpers functions are not provided to you, please create helper functions to do the following:
 - Write a method to check that the outputs of both of your implementations are indeed sorted.  It's good to get into the habit of writing tests as you go along.
 - Write a method to print arrays outputs of both of your implementations.
+
 If they are provided to you, you may modify or enhance them for your use.
 
 ### Measuring computation time
