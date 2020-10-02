@@ -8,15 +8,15 @@ namespace MergeSort
         {
 
             ARRAY_SIZE = 1000;
-            int[] ArraySingleThread = new int[ARRAY_SIZE];
+            int[] arraySingleThread = new int[ARRAY_SIZE];
 
-            // copy array by value.. YOu can also use array.copy()
-            int[] ArrayMultiThread = Unsorted.Slice(0,Unsorted.Length);
+
 
 
             // TODO : Use the "Random" class in a for loop to initialize an array
 
-
+            // copy array by value.. You can also use array.copy()
+            int[] arrayMultiThread = arraySingleThread.Slice(0,arraySingleThread.Length);
 
             /*TODO : Use the  "Stopwatch" class to measure the duration of time that
                it takes to sort an array using one-thread merge sort and
@@ -25,7 +25,7 @@ namespace MergeSort
 
 
             //TODO :start the stopwatch
-            MergeSort(ArraySingleThread);
+            MergeSort(arraySingleThread);
             //TODO :Stop the stopwatch
 
 
@@ -67,7 +67,7 @@ namespace MergeSort
 
 
             // a helper function to print your array
-            static void print_array(int[] myArray)
+            static void PrintArray(int[] myArray)
             {
                 Console.Write("[");
                 for (int i = 0; i < myArray.Length; i++)
@@ -82,7 +82,7 @@ namespace MergeSort
 
             // a helper function to confirm your array is sorted
             // returns boolean True if the array is sorted
-            static bool isSorted(int[] a)
+            static bool IsSorted(int[] a)
             {
                 int j = a.Length - 1;
                 if (j < 1) return true;
@@ -96,3 +96,4 @@ namespace MergeSort
 
 
     }
+}
