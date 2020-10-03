@@ -157,4 +157,4 @@ where $$p$$ is the number of processors or cores, and $$T_p$$ is the time taken 
 1. In a table summarize the duration of time for your single thread and multi-thread merge sort algorithms for the following unsorted array sizes of {10, 10^2, 10^3, 10^4, 10^5, 10^6, 10^7}
 2. How much speed-up were you expecting based on the number of processors/cores on your machine?
 3. Did you achieve the speed-up you expected?  If not, what do you think might be interfering with this?
-4. In your parallel implementation, how many threads were created (approximately) when sorting one million elements? Is there a way to reduce the number of new threads by about half without sacrificing parallelism?
+4. In your parallel implementation, try different number of threads for an array size of million elements. Observe the speed up factor as a function of thread size, i.e. speed-up factor (Y-axis) for #threads increasing (X-axis). Summarize your results in a table in your README file in the repo.
