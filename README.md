@@ -158,3 +158,88 @@ where $$p$$ is the number of processors or cores, and $$T_p$$ is the time taken 
 2. How much speed-up were you expecting based on the number of processors/cores on your machine?
 3. Did you achieve the speed-up you expected?  If not, what do you think might be interfering with this?
 4. In your parallel implementation, try different number of threads for an array size of million elements. Observe the speed up factor as a function of thread size, i.e. speed-up factor (Y-axis) for #threads increasing (X-axis). Summarize your results in a table in your README file in the repo.
+
+
+
+## Part 2: Monte Carlo Methods
+
+The Monte-Carlo method is a general purpose technique for estimating quantities traditionally difficult to compute analytically. It involves estimating a quantity using random sampling over and over and over and over again, and averaging the results to come up with a `best guess' of the value.  In general, each sample is independent of all other samples, making this ideal for concurrent implementations.
+
+For example, consider a game of monopoly.  What is the expected number of times of being sent to jail in a game with four players and 100 turns?  Not only do you have to consider the random rolls of the die, but also the community chest and chance cards.  Rather than try to go through all possible games with every possible dice roll for every possible turn, we can *simulate* a whole bunch of games -- say 100,000 -- count how many times each player ended up in jail, and average them.  This should give us a decent estimate of the true value.
+
+In this part of the lab, we are going to use the Monte-Carlo method to estimate the value of $$\pi$$, and to integrate some functions.
+
+### Generating random numbers
+
+
+We need to create *random* numbers which are *distributted* uniformly [-1,1]. We need to create a random seed so that every time our code runs, we get a different random sequence. This is particularly important if we plean to use multi-threading as we need each thread to generate a distinct seed and consequently, a different random sequence. View [MS Docs](https://docs.microsoft.com/en-us/dotnet/api/system.random.nextdouble?view=netcore-3.1) for the details of implementation.
+
+
+### Estimating PI
+
+In order to estimate the value of PI using random sampling, we need to define a random function where we expect the answer to be PI.  The most common approach is to consider a circle with radius 1 inside a square with side-lengths 2.
+
+
+The area of the unit circle is simply $$\pi$$.  Surround this with a bounding square.  The square has side-lenghts 2 and an area of 4.  If we were to randomly generate samples inside the square region [-1,1]x[-1,1], we would expect that the points would fall inside or on the unit circle with a probability of $$p=\pi/4$$, the ratio of the two areas.  If a random sample falls within the circle, we call that a *hit*.  If it falls outside the circle, we call that a *miss*.  All we need to do now is generate samples within the square region, count the fraction of hits, and multiply by four to recover the estimate of $$\pi$$. You can also watch this [video](https://www.youtube.com/watch?v=VJTFfIqO4TU) for further illustration.
+
+Create a new solution in lab2  called `pi`, or download the template provided on [GitHub](https://github.com/alimousavifar/lab2_public/).  First, create a single-threaded method that estimates the value of PI.  The layout of the file should look something like the following:
+
+```
+using System;
+
+namespace pi
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            long numberOfSamples = 1000;
+            long hits;
+            double pi = EstimatePI(numberOfSamples, ref long hits);
+
+
+
+            static double EstimatePI(long numberOfSamples, ref long hits)
+            {
+              //implement
+            }
+
+
+            static double[,] GenerateSamples(long numberOfSamples)
+            {
+              // Implement  
+
+            }
+
+
+        }
+    }
+}
+
+```
+
+How accurate is your PI estimate with only 1000 random samples?  How many samples do you need to be accurate to 3 decimal places?
+
+#### Speeding up the computation
+
+One way to try to speed things up is to generate and check each random sample in a separate thread (**WARNING:** *use a very small number of samples, such as 1000).  Each sample is independent of each other, so we should be able to perform our sampling in parallel. Note that the number of *hits* between threads is the critical section of the code and needs to be protected during the parallel processing. Feel free to use MutEx or other locking mechanisms you learned in the lecture.
+
+
+Fill in the function that does the random sampling and circle test. And use equal number of theads as samples 1000.  If you create too many threads at once you will get a system error.*  Is this method any faster than the single-threaded version?  Why not?
+
+We want to limit the number of threads created in order to reduce overhead, but also try to maximize concurrency.  How many threads should we allow?  You can determine the number of cores on your machine using `Environment.ProcessorCount`.
+
+A better way of splitting up the work is to create a small number of threads, and let each thread handle a certain number of samples. Create threads dynamically (in a function or like the [lecture example](https://bit.ly/2SrcAKn)) based on a thread# variable and sub-divide the sample amongst the threads. Try a few thread# including the number of cores on your machine ([Environment.ProcessorCount](https://bit.ly/3njGVZl)).
+
+Note, that your GenerateSamples function should generate samples based on a random seed. See [this example](https://bit.ly/2GDASOq) for reference. Also,  
+
+Now are you seeing a speed-up?  With so few threads, you can increase the number of samples again until you get an accuracy of 3 decimal places.  For how many samples does it become worth it to use multiple threads? 
+
+In a README file in your repository, summarize the speed up factor of a single-thread and a multi-thread (use thread# = number of cores on your machine) as a funtion of the sample sizes {10^3, 10^4,..,10^7,10^8}.
+
+#### Questions
+
+1. What have you learned in terms of splitting up work between threads?
+2. What implications does this have when designing concurrent code?
+3. How many samples do you *think* you will need for an accuracy of 7 decimal places? Is the Monte Carlo simulation an efficient method to estimate Pi with high accuracy (feel free to research in the internet)?
+
