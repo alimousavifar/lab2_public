@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.810.8
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiThreadPi", "MultiThreadPi\MultiThreadPi.csproj", "{983D1755-B9E1-4A9D-AF1A-41409E7940B8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|anycpu = Debug|anycpu
+		Release|anycpu = Release|anycpu
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{983D1755-B9E1-4A9D-AF1A-41409E7940B8}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{983D1755-B9E1-4A9D-AF1A-41409E7940B8}.Debug|anycpu.Build.0 = Debug|anycpu
+		{983D1755-B9E1-4A9D-AF1A-41409E7940B8}.Release|anycpu.ActiveCfg = Release|anycpu
+		{983D1755-B9E1-4A9D-AF1A-41409E7940B8}.Release|anycpu.Build.0 = Release|anycpu
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7EFBBCBA-1E81-4A17-8E88-6331F43FE22D}
+	EndGlobalSection
+EndGlobal
