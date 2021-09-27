@@ -30,7 +30,7 @@ Download the template provided on [GitHub](https://github.com/alimousavifar/lab2
 We will then measure the computation time of both, and compute the *speed-up factor* to see how much we have gained.
 
 The basic layout of your code should look as follows:
-```
+```c#
 static void Main(string[] args)
 {
 
@@ -184,7 +184,7 @@ The area of the unit circle is simply $$\pi$$.  Surround this with a bounding sq
 
 Create a new solution in lab2  called `pi`, or download the template provided on [GitHub](https://github.com/alimousavifar/lab2_public/).  First, create a single-threaded method that estimates the value of PI.  The layout of the file should look something like the following:
 
-```
+```c#
 using System;
 
 namespace pi
