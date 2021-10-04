@@ -19,7 +19,7 @@ namespace MergeSort
             // TODO : Use the "Random" class in a for loop to initialize an array
             for (int i = 0; i < arraySingleThread.Length; i++)
             {
-                arraySingleThread[i] = Rand.Next(0, 99999);
+                arraySingleThread[i] = Rand.Next(0, 1000);
                 //Console.WriteLine(arraySingleThread[i]);
             }
 
@@ -35,7 +35,10 @@ namespace MergeSort
 
             //TODO :start the stopwatch
             stopWatch.Start();
-            MergeSort(arraySingleThread, 0, arraySingleThread.Length-1);
+            
+            //MergeSort(arraySingleThread, 0, arraySingleThread.Length-1);
+            StartTheThread(arraySingleThread, 0, arraySingleThread.Length - 1);
+
             //TODO :Stop the stopwatch
             stopWatch.Stop();
             TimeSpan ts = stopWatch.Elapsed;
@@ -47,12 +50,13 @@ namespace MergeSort
             PrintArray(arraySingleThread);
 
             //TODO: Multi Threading Merge Sort
-
-
-
-
-
-
+            
+            Thread StartTheThread(int[] array, int left, int right)
+            {
+                var t = new Thread(() => MergeSort(array, left, right));
+                t.Start();
+                return t;
+            }
 
             /*********************** Methods **********************
              *****************************************************/
