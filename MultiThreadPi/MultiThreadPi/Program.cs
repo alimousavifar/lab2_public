@@ -9,11 +9,8 @@ namespace MultiThreadPi
             long numberOfSamples = 1000;
             long hits = 3;
             double pi;
-            double[,] temp;
-            temp = GenerateSamples(numberOfSamples);
-            Console.WriteLine(temp);
-            hits = hitOrMiss(temp, numberOfSamples);
-
+            hits = GenerateSamples(numberOfSamples);
+            Console.WriteLine(hits);
             pi = EstimatePI(numberOfSamples, ref hits);
             Console.WriteLine("The value of Pi is roughly: " + pi);
 
@@ -23,10 +20,14 @@ namespace MultiThreadPi
         {
             //implement
             double value = 3.14;
-            value = hits / numberOfSamples * 4;
+            Console.WriteLine(numberOfSamples);
+            Console.WriteLine(hits);
+
+            value = (hits / numberOfSamples) * 4;
+            Console.WriteLine(value);
             return value;
         }
-        static double[,] GenerateSamples(long numberOfSamples) // returns coordinates
+        static long GenerateSamples(long numberOfSamples) // returns coordinates
         {
             var Rand = new Random();
             double x, y;
@@ -39,7 +40,18 @@ namespace MultiThreadPi
                 hitPointsList[i, 1] = Rand.NextDouble() * 2;
                 //Console.WriteLine( "{0}, {1}", hitPointsList[i, 0], hitPointsList[i, 1]);
             }
-            return hitPointsList;
+            long circle = 0;
+            for (int i = 0; i < numberOfSamples; i++)
+            {
+                x = hitPointsList[i, 0];
+                y = hitPointsList[i, 1];
+
+                if (((x - 1) * (x - 1)) + ((y - 1) * (y - 1)) <= 1)
+                {
+                    circle++;
+                }
+            }
+            return circle;
         }
 
         static long hitOrMiss(double[,] hitPointsList, long numberOfSamples) 
