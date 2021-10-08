@@ -7,12 +7,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiThreadPi", "MultiThrea
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
 		Debug|anycpu = Debug|anycpu
+		Release|Any CPU = Release|Any CPU
 		Release|anycpu = Release|anycpu
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{983D1755-B9E1-4A9D-AF1A-41409E7940B8}.Debug|anycpu.ActiveCfg = Debug|anycpu
-		{983D1755-B9E1-4A9D-AF1A-41409E7940B8}.Debug|anycpu.Build.0 = Debug|anycpu
+		{983D1755-B9E1-4A9D-AF1A-41409E7940B8}.Debug|Any CPU.ActiveCfg = Debug|Any cpu
+		{983D1755-B9E1-4A9D-AF1A-41409E7940B8}.Debug|Any CPU.Build.0 = Debug|Any cpu
+		{983D1755-B9E1-4A9D-AF1A-41409E7940B8}.Debug|anycpu.ActiveCfg = Debug|Any cpu
+		{983D1755-B9E1-4A9D-AF1A-41409E7940B8}.Debug|anycpu.Build.0 = Debug|Any cpu
+		{983D1755-B9E1-4A9D-AF1A-41409E7940B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{983D1755-B9E1-4A9D-AF1A-41409E7940B8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{983D1755-B9E1-4A9D-AF1A-41409E7940B8}.Release|anycpu.ActiveCfg = Release|anycpu
 		{983D1755-B9E1-4A9D-AF1A-41409E7940B8}.Release|anycpu.Build.0 = Release|anycpu
 	EndGlobalSection
