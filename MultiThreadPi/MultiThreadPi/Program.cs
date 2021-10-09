@@ -19,11 +19,11 @@ namespace MultiThreadPi
         private static double EstimatePI(long numberOfSamples, ref long hits)
         {
             //implement
-            double value = 3.14;
+            double value;
             Console.WriteLine(numberOfSamples);
             Console.WriteLine(hits);
 
-            value = (hits / numberOfSamples) * 4;
+            value = (Convert.ToDouble(hits) / Convert.ToDouble(numberOfSamples)) * 4.0;
             Console.WriteLine(value);
             return value;
         }
