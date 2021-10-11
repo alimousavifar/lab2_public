@@ -9,7 +9,7 @@ namespace MergeSort
         static void Main(string[] args)
         {
 
-            int ARRAY_SIZE = 100;
+            int ARRAY_SIZE = 10000;
             int divider = 17;
             int[] arraySingleThread = new int[ARRAY_SIZE];
             var Rand = new Random();
@@ -20,7 +20,7 @@ namespace MergeSort
             // TODO : Use the "Random" class in a for loop to initialize an array
             for (int i = 0; i < arraySingleThread.Length; i++)
             {
-                arraySingleThread[i] = Rand.Next(1, 999);
+                arraySingleThread[i] = Rand.Next(1, 9999999);
                 //Console.WriteLine(arraySingleThread[i]);
             }
 
@@ -37,9 +37,9 @@ namespace MergeSort
             //TODO :start the stopwatch
             stopWatch.Start();
 
-            //MergeSort(arraySingleThread, 0, arraySingleThread.Length-1);
+            MergeSort(arraySingleThread, 0, arraySingleThread.Length-1);
             //StartTheThread(arraySingleThread, 0, arraySingleThread.Length - 1);
-            SubdivideArray(arraySingleThread, divider);
+            //SubdivideArray(arraySingleThread, divider);
 
             //TODO :Stop the stopwatch
             stopWatch.Stop();
@@ -50,7 +50,7 @@ namespace MergeSort
                                                 ts.Milliseconds / 10);
             Console.WriteLine("Single Thread time Elapsed: " + timeElapsed);
             //Console.WriteLine("Final Thread");
-            PrintArray(arraySingleThread);
+            //PrintArray(arraySingleThread);
 
             //TODO: Multi Threading Merge Sort
 
@@ -96,8 +96,8 @@ namespace MergeSort
                         //Console.WriteLine("Counter" + i);
                         MergeArrays(replacementArray2, newArray[i], replacementArray, i);
                         Array.Copy(replacementArray, 0, replacementArray2, 0, array.Length);
-                        Console.WriteLine("Replacement Array 2 " + i);
-                        PrintArray(replacementArray2);
+                        //Console.WriteLine("Replacement Array 2 " + i);
+                        //PrintArray(replacementArray2);
                     }
                     //Console.WriteLine("FInal Replacement");
                     Array.Copy(replacementArray, 0, array, 0, array.Length);
@@ -109,7 +109,7 @@ namespace MergeSort
                 var t = new Thread(() => MergeSort(array, left, right));
                 t.Start();
                 t.Join();
-                PrintArray(array);
+                //PrintArray(array);
                 return t;
             }
 

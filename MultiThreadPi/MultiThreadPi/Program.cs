@@ -68,7 +68,7 @@ namespace MultiThreadPi
             }
             lock (lockCompleted)
             {
-
+                multiThreadHits[0] /= 10;
                 multiThreadPi = EstimatePI((numberOfSamples * threadNum), ref multiThreadHits[0]);
                 Console.WriteLine("The value of Pi is roughly: " + multiThreadPi);
             }
@@ -109,19 +109,18 @@ namespace MultiThreadPi
         }
         static long GenerateSamples(long numberOfSamples) // returns coordinates
         {
-            
+            var Rand = new Random();
             double x, y;
             // Implement  
             double[,] hitPointsList = new double[numberOfSamples, 2];
 
             for (int i = 0; i < numberOfSamples; i++)
             {
-                var Rand = new Random();
                 hitPointsList[i, 0] = Rand.NextDouble() * 2;
                 hitPointsList[i, 1] = Rand.NextDouble() * 2;
                 //Console.WriteLine( "{0}, {1}", hitPointsList[i, 0], hitPointsList[i, 1]);
             }
-            Console.WriteLine("{0}, {1}", hitPointsList[69, 0], hitPointsList[69, 1]);
+            //Console.WriteLine("{0}, {1}", hitPointsList[69, 0], hitPointsList[69, 1]);
             long circle = 0;
             for (int i = 0; i < numberOfSamples; i++)
             {
