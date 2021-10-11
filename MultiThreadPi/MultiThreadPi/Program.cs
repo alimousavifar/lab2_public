@@ -55,19 +55,20 @@ namespace MultiThreadPi
 
             // Using Lecture Example
             List<Thread> myThreads = new List<Thread>();
-            for(int i = 0; i < threadNum; i++)
+            for (int i = 0; i < threadNum; i++)
             {
                 var t = new Thread(() => multiThreadGenerateSamples(numberOfSamples, multiThreadHits, threadNum));
                 t.Name = string.Format("Thread {0}", i + 1);
                 t.Start();
                 myThreads.Add(t);
             }
-            foreach(Thread t in myThreads)
+            foreach (Thread t in myThreads)
             {
                 t.Join();
             }
-            lock(lockCompleted)
+            lock (lockCompleted)
             {
+
                 multiThreadPi = EstimatePI((numberOfSamples * threadNum), ref multiThreadHits[0]);
                 Console.WriteLine("The value of Pi is roughly: " + multiThreadPi);
             }
@@ -95,29 +96,32 @@ namespace MultiThreadPi
         static void multiThreadGenerateSamples(long numSamples, long[] hitsArray, int threadNum)
         {
             long hits = 0;
-            for(int i = 0; i < threadNum; i++)
+            for (int i = 0; i < threadNum; i++)
             {
                 hits += GenerateSamples(numSamples);
-                Console.WriteLine("Total Hits: " + hits);
+                //Console.WriteLine("Total Hits: " + hits);
             }
-            lock(lockCompleted)
+            Console.WriteLine("hits " + hits);
+            lock (lockCompleted)
             {
                 hitsArray[0] += hits;
             }
         }
         static long GenerateSamples(long numberOfSamples) // returns coordinates
         {
-            var Rand = new Random();
+            
             double x, y;
             // Implement  
             double[,] hitPointsList = new double[numberOfSamples, 2];
 
             for (int i = 0; i < numberOfSamples; i++)
             {
+                var Rand = new Random();
                 hitPointsList[i, 0] = Rand.NextDouble() * 2;
                 hitPointsList[i, 1] = Rand.NextDouble() * 2;
                 //Console.WriteLine( "{0}, {1}", hitPointsList[i, 0], hitPointsList[i, 1]);
             }
+            Console.WriteLine("{0}, {1}", hitPointsList[69, 0], hitPointsList[69, 1]);
             long circle = 0;
             for (int i = 0; i < numberOfSamples; i++)
             {
@@ -131,45 +135,5 @@ namespace MultiThreadPi
             }
             return circle;
         }
-
-        static long hitOrMiss(double[,] hitPointsList, long numberOfSamples) 
-        {
-            long circle = 0;
-            double x, y;
-            for(int i= 0; i < numberOfSamples; i++)
-            {
-                x = hitPointsList[i, 0];
-                y = hitPointsList[i, 1];
-
-                if (((x - 1) * (x - 1)) + ((y - 1) * (y - 1)) <= 1)
-                {
-                    circle++;
-                }
-            }
-            return circle;
-        }
-        /*private static int RNG()
-        {
-            int PosNeg;
-            int value = 69;
-            var Rand = new Random();
-
-            PosNeg = Rand.Next(0, 15); // generates either 0 or 1
-            
-            Console.WriteLine(PosNeg);
-
-            if(PosNeg == 0)
-            {
-                value = 1;
-                return value;
-            }
-            else
-            {
-                value =-1;
-                return value;
-            }
-            //  return value;
-
-        }*/
     }
 }
