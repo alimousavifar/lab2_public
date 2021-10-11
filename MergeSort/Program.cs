@@ -49,7 +49,7 @@ namespace MergeSort
                                                 ts.Hours, ts.Minutes, ts.Seconds,
                                                 ts.Milliseconds / 10);
             Console.WriteLine("Single Thread time Elapsed: " + timeElapsed);
-            //Console.WriteLine("FInal Thread");
+            //Console.WriteLine("Final Thread");
             PrintArray(arraySingleThread);
 
             //TODO: Multi Threading Merge Sort
