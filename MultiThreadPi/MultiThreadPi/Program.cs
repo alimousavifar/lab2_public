@@ -8,6 +8,7 @@ namespace MultiThreadPi
 {
     class MainClass
     {
+        private static readonly Random locked = new Random();
         static readonly object lockCompleted = new object();
         static void Main(string[] args)
         {
@@ -109,7 +110,8 @@ namespace MultiThreadPi
         }
         static long GenerateSamples(long numberOfSamples) // returns coordinates
         {
-            var Rand = new Random();
+            int root = locked.Next();
+            var Rand = new Random(root);
             double x, y;
             // Implement  
             double[,] hitPointsList = new double[numberOfSamples, 2];
